@@ -1,0 +1,156 @@
+/* userProfile.wxss */
+
+/* 页面容器 */
+.container {
+  padding: 0;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+/* 用户资料卡片 */
+.user-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.avatar-container {
+  position: relative;
+  margin-right: 30rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  border: 4rpx solid #fff;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.user-desc {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.edit-btn {
+  padding: 15rpx;
+}
+
+.edit-btn .cuIcon-edit {
+  font-size: 36rpx;
+  color: #999;
+}
+
+/* 菜单列表 */
+.menu-list {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-left {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20rpx;
+}
+
+.icon-container text {
+  font-size: 32rpx;
+  color: #fff;
+}
+
+/* 各种图标颜色 */
+.devices {
+  background-color: #1890ff;
+}
+
+.alerts {
+  background-color: #ff4d4f;
+}
+
+.notifications {
+  background-color: #52c41a;
+}
+
+.settings {
+  background-color: #722ed1;
+}
+
+.help {
+  background-color: #faad14;
+}
+
+.about {
+  background-color: #13c2c2;
+}
+
+.menu-text {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.cuIcon-right {
+  font-size: 26rpx;
+  color: #c0c0c0;
+}
+
+/* 登录/退出按钮 */
+.logout-btn, .login-btn {
+  margin: 60rpx 30rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+}
+
+.logout-btn {
+  background-color: #f5f5f5;
+  color: #ff4d4f;
+  border: 1rpx solid #ff4d4f;
+}
+
+.login-btn {
+  background-color: #1890ff;
+  color: #fff;
+} 

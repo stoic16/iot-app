@@ -1,0 +1,64 @@
+<!-- pages/alertList/alertList.wxml -->
+<view class="container alert-list-container">
+  <!-- 筛选区域 -->
+  <view class="filter-bar">
+    <view class="filter-item">
+      <picker bindchange="onSeverityChange" value="{{severityIndex}}" range="{{severityOptions}}" range-key="label">
+        <view class="picker">
+          {{ severityOptions[severityIndex].label }}
+          <image class="filter-icon" src="/images/filter.png"></image>
+        </view>
+      </picker>
+    </view>
+    <view class="filter-item">
+      <switch checked="{{!filter.acknowledged}}" bindchange="toggleAcknowledgedFilter" color="#11cd6e" />
+      <text class="switch-label">只看未确认</text>
+    </view>
+  </view>
+  <!-- 加载状态 -->
+  <view wx:if="{{isLoading && alerts.length === 0}}" class="loading-indicator">
+    <text>加载中...</text>
+  </view>
+  <!-- 错误状态 -->
+  <view wx:if="{{error}}" class="error-message">
+    <text>{{error}}</text>
+    <button size="mini" bindtap="fetchAlerts">重试</button>
+  </view>
+  <!-- 告警列表 -->
+  <view wx:if="{{!isLoading && alerts.length > 0}}" class="alert-list">
+    <view class="alert-card severity-{{item.severity}}" wx:for="{{alerts}}" wx:key="_id">
+      <view class="card-content">
+        <view class="alert-header">
+          <text class="severity-badge">{{item.severity}}</text>
+          <text class="alert-time">{{item.timestamp}}</text>
+          <!-- 需格式化时间 -->
+        </view>
+        <view class="alert-message">{{item.message}}</view>
+        <view class="alert-details">
+          <view class="detail-item">
+            <text class="label">设备ID:</text>
+            <text class="value">{{item.deviceId.deviceId || 'N/A'}}</text>
+          </view>
+          <!-- 假设deviceId是填充的对象 -->
+          <view class="detail-item">
+            <text class="label">设备名称:</text>
+            <text class="value">{{item.deviceId.name || 'N/A'}}</text>
+          </view>
+          <!-- 可以显示 item.data 中的关键信息 -->
+          <!-- <view class="detail-item"><text class="label">数据:</text> <text class="value">{{item.data}}</text></view> -->
+        </view>
+      </view>
+      <view class="card-actions" wx:if="{{!item.acknowledged}}">
+        <button class="ack-button" size="mini" type="primary" data-id="{{item._id}}" bindtap="acknowledgeAlert">
+          确认告警
+        </button>
+      </view>
+      <view class="acknowledged-tag" wx:else>已确认</view>
+    </view>
+  </view>
+  <!-- 空状态 -->
+  <view wx:if="{{!isLoading && !error && alerts.length === 0}}" class="empty-state">
+    <image class="empty-icon" src="/images/empty-alert.png" mode="aspectFit"></image>
+    <text>暂无告警信息</text>
+  </view>
+</view>

@@ -1,0 +1,173 @@
+/* pages/deviceDetail/deviceDetail.wxss */
+.device-detail-container {
+  padding: 0; /* Remove container padding, handle padding in sections */
+}
+
+.loading-indicator,
+.error-message {
+  padding: 100rpx 30rpx;
+  text-align: center;
+  color: #999;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+  position: sticky; /* Make tabs sticky */
+  top: 0;
+  z-index: 10;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #11cd6e;
+  font-weight: bold;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 4rpx;
+  background-color: #11cd6e;
+  border-radius: 2rpx;
+}
+
+/* Tab Content */
+.tab-content {
+  padding: 30rpx;
+}
+
+.tab-panel {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  margin-bottom: 30rpx;
+}
+
+.info-block {
+  margin-bottom: 30rpx;
+}
+.info-block:last-child {
+  margin-bottom: 0;
+}
+
+.block-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.info-row {
+  display: flex;
+  font-size: 28rpx;
+  line-height: 1.7;
+  margin-bottom: 10rpx;
+}
+
+.label {
+  color: #999;
+  width: 160rpx;
+  flex-shrink: 0;
+}
+
+.value {
+  color: #333;
+  flex-grow: 1;
+  word-break: break-all;
+}
+
+.status-online {
+  color: #11cd6e;
+  font-weight: bold;
+}
+.status-offline {
+  color: #aaa;
+}
+.status-error {
+  color: #f56c6c;
+  font-weight: bold;
+}
+.status-maintenance {
+  color: #e6a23c;
+}
+
+.empty-text {
+  color: #999;
+  font-size: 26rpx;
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.telemetry-item .value {
+  font-style: italic;
+}
+
+/* History Panel */
+.history-panel {
+  padding: 0; /* Chart needs full width */
+}
+
+.chart-container {
+  width: 100%;
+  height: 500rpx; /* Adjust height as needed */
+}
+
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Control Panel */
+.control-form {
+  padding-top: 20rpx;
+}
+
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  padding: 16rpx 20rpx;
+  font-size: 28rpx;
+  background-color: #fdfdfd;
+}
+
+.form-textarea {
+  height: 150rpx;
+  line-height: 1.5;
+}
+
+.send-btn {
+  margin-top: 20rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+} 

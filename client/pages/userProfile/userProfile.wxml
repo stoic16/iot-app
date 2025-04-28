@@ -1,0 +1,92 @@
+<!-- userProfile.wxml -->
+<view class="container">
+  <!-- 用户资料卡片 -->
+  <view class="user-card">
+    <view class="avatar-container">
+      <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+    </view>
+    <view class="user-info">
+      <text class="username">{{userInfo.nickName || '未登录'}}</text>
+      <text class="user-desc">{{userInfo.signature || '编辑个人信息'}}</text>
+    </view>
+    <view class="edit-btn" wx:if="{{isLoggedIn}}" bindtap="editUserInfo">
+      <text class="cuIcon-edit"></text>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-list">
+    <!-- 设备管理 -->
+    <view class="menu-item" bindtap="navigateTo" data-url="/pages/deviceList/deviceList">
+      <view class="menu-item-left">
+        <view class="icon-container devices">
+          <text class="cuIcon-similar"></text>
+        </view>
+        <text class="menu-text">我的设备</text>
+      </view>
+      <text class="cuIcon-right"></text>
+    </view>
+    
+    <!-- 告警记录 -->
+    <view class="menu-item" bindtap="navigateTo" data-url="/pages/alertList/alertList">
+      <view class="menu-item-left">
+        <view class="icon-container alerts">
+          <text class="cuIcon-warn"></text>
+        </view>
+        <text class="menu-text">告警记录</text>
+      </view>
+      <text class="cuIcon-right"></text>
+    </view>
+
+    <!-- 消息通知 -->
+    <view class="menu-item" bindtap="navigateTo" data-url="/pages/notifications/notifications">
+      <view class="menu-item-left">
+        <view class="icon-container notifications">
+          <text class="cuIcon-notification"></text>
+        </view>
+        <text class="menu-text">消息通知</text>
+      </view>
+      <text class="cuIcon-right"></text>
+    </view>
+  </view>
+  
+  <!-- 系统设置 -->
+  <view class="menu-list">
+    <!-- 通用设置 -->
+    <view class="menu-item" bindtap="navigateTo" data-url="/pages/settings/settings">
+      <view class="menu-item-left">
+        <view class="icon-container settings">
+          <text class="cuIcon-settings"></text>
+        </view>
+        <text class="menu-text">通用设置</text>
+      </view>
+      <text class="cuIcon-right"></text>
+    </view>
+    
+    <!-- 帮助中心 -->
+    <view class="menu-item" bindtap="navigateTo" data-url="/pages/help/help">
+      <view class="menu-item-left">
+        <view class="icon-container help">
+          <text class="cuIcon-question"></text>
+        </view>
+        <text class="menu-text">帮助中心</text>
+      </view>
+      <text class="cuIcon-right"></text>
+    </view>
+    
+    <!-- 关于我们 -->
+    <view class="menu-item" bindtap="navigateTo" data-url="/pages/about/about">
+      <view class="menu-item-left">
+        <view class="icon-container about">
+          <text class="cuIcon-info"></text>
+        </view>
+        <text class="menu-text">关于我们</text>
+      </view>
+      <text class="cuIcon-right"></text>
+    </view>
+  </view>
+
+  <!-- 退出登录按钮 -->
+  <view class="logout-btn" wx:if="{{isLoggedIn}}" bindtap="logout">退出登录</view>
+  <view class="login-btn" wx:else bindtap="navigateTo" data-url="/pages/login/login">立即登录</view>
+</view> 

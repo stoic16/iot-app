@@ -1,0 +1,20 @@
+/**app.wxss**/
+/** 可以在这里引入 WeUI 样式库，或者定义全局样式 **/
+
+/* 示例：引入 WeUI 基础样式 (如果通过 npm 安装) */
+/* @import './miniprogram_npm/weui-wxss/dist/style/weui.wxss'; */
+
+/* 示例：全局页面背景色 */
+page {
+  background-color: #f8f8f8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+/* 示例：容器基本样式 */
+.container {
+  padding: 15px;
+}
+
+/* 可以添加更多全局样式 */ 

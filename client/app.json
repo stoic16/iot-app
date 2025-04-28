@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/deviceList/deviceList",
+    "pages/deviceDetail/deviceDetail",
+    "pages/deviceAdd/deviceAdd",
+    "pages/alertList/alertList",
+    "pages/login/login",
+    "pages/userProfile/userProfile"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "IoT管理平台",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#1890ff",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/deviceList/deviceList",
+        "text": "设备",
+        "iconPath": "assets/device.png",
+        "selectedIconPath": "assets/device-active.png"
+      },
+      {
+        "pagePath": "pages/alertList/alertList",
+        "text": "告警",
+        "iconPath": "assets/alert.png",
+        "selectedIconPath": "assets/alert-active.png"
+      },
+      {
+        "pagePath": "pages/userProfile/userProfile",
+        "iconPath": "assets/my.png",
+        "selectedIconPath": "assets/my-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+} 

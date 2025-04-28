@@ -1,0 +1,21 @@
+<!-- pages/login/login.wxml -->
+<view class="container login-container">
+  <view class="logo-area">
+    <!-- 可以放一个 Logo 图片 -->
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <view class="title">IoT 应用平台</view>
+  </view>
+
+  <form bindsubmit="submitForm">
+    <view class="input-group">
+      <input class="input-item" type="text" placeholder="请输入邮箱" data-field="email" bindinput="onInput" value="{{email}}"/>
+      <input class="input-item" type="password" placeholder="请输入密码" data-field="password" bindinput="onInput" value="{{password}}"/>
+    </view>
+
+    <button class="submit-btn" form-type="submit" type="primary">{{ isRegister ? '注册' : '登录' }}</button>
+
+    <view class="toggle-text" bindtap="toggleRegister">
+      {{ isRegister ? '已有账号？去登录' : '没有账号？去注册' }}
+    </view>
+  </form>
+</view> 

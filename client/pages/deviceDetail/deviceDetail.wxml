@@ -1,0 +1,96 @@
+<!-- pages/deviceDetail/deviceDetail.wxml -->
+<view class="container device-detail-container">
+  <!-- 加载或错误状态 -->
+  <view wx:if="{{isLoading}}" class="loading-indicator">加载中...</view>
+  <view wx:if="{{error && !deviceInfo}}" class="error-message">{{error}}</view>
+
+  <view wx:if="{{deviceInfo}}">
+    <!-- Tab 导航 -->
+    <view class="tabs">
+      <view class="tab-item {{activeTab === 'info' ? 'active' : ''}}" data-tab="info" bindtap="switchTab">基本信息</view>
+      <view class="tab-item {{activeTab === 'data' ? 'active' : ''}}" data-tab="data" bindtap="switchTab">实时数据</view>
+      <view class="tab-item {{activeTab === 'history' ? 'active' : ''}}" data-tab="history" bindtap="switchTab">历史数据</view>
+      <view class="tab-item {{activeTab === 'control' ? 'active' : ''}}" data-tab="control" bindtap="switchTab">设备控制</view>
+    </view>
+
+    <!-- Tab 内容 -->
+    <view class="tab-content">
+      <!-- 基本信息 -->
+      <view wx:if="{{activeTab === 'info'}}" class="tab-panel info-panel">
+        <view class="info-block">
+          <view class="info-row"><text class="label">设备名称:</text><text class="value">{{deviceInfo.name}}</text></view>
+          <view class="info-row"><text class="label">设备ID:</text><text class="value">{{deviceInfo.deviceId}}</text></view>
+          <view class="info-row"><text class="label">类型:</text><text class="value">{{deviceInfo.type}}</text></view>
+          <view class="info-row"><text class="label">位置:</text><text class="value">{{deviceInfo.location}}</text></view>
+          <view class="info-row"><text class="label">状态:</text><text class="value status-{{deviceInfo.status}}">{{deviceInfo.status}}</text></view>
+          <view class="info-row"><text class="label">描述:</text><text class="value">{{deviceInfo.description || '-'}}</text></view>
+          <view class="info-row"><text class="label">最后活动:</text><text class="value">{{deviceInfo.lastActivity || '-'}}</text></view>
+          <view class="info-row"><text class="label">创建时间:</text><text class="value">{{deviceInfo.createdAt || '-'}}</text></view>
+        </view>
+        <!-- 设备属性 -->
+        <view class="info-block">
+          <view class="block-title">设备属性</view>
+          <view wx:if="{{deviceInfo.attributes && deviceInfo.attributes.size > 0}}">
+             <view class="info-row" wx:for="{{deviceInfo.attributes}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+                <text class="label">{{key}}:</text>
+                <text class="value">{{value}}</text>
+            </view>
+          </view>
+          <view wx:else class="empty-text">暂无属性</view>
+        </view>
+        <!-- 遥测数据点定义 -->
+        <view class="info-block">
+          <view class="block-title">遥测数据点</view>
+          <view wx:if="{{deviceInfo.telemetry && deviceInfo.telemetry.length > 0}}">
+            <view class="info-row telemetry-item" wx:for="{{deviceInfo.telemetry}}" wx:key="key">
+              <text class="label">{{item.key}}:</text>
+              <text class="value">{{item.dataType}}{{item.unit ? ' (' + item.unit + ')' : ''}}</text>
+            </view>
+          </view>
+          <view wx:else class="empty-text">未定义遥测数据点</view>
+        </view>
+      </view>
+
+      <!-- 实时数据 -->
+      <view wx:if="{{activeTab === 'data'}}" class="tab-panel data-panel">
+        <view wx:if="{{latestData && latestData.data}}" class="info-block">
+           <view class="block-title">最新上报时间: {{latestData.timestamp || '-'}}</view>
+           <view class="info-row" wx:for="{{latestData.data}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+              <text class="label">{{key}}:</text>
+              <text class="value">{{value}} {{telemetryUnits[key] ? '(' + telemetryUnits[key] + ')' : ''}}</text>
+            </view>
+        </view>
+        <view wx:else class="empty-text">暂无实时数据</view>
+      </view>
+
+      <!-- 历史数据 -->
+      <view wx:if="{{activeTab === 'history'}}" class="tab-panel history-panel">
+        <view wx:if="{{historyData.length > 0}}">
+          <view class="chart-container">
+            <ec-canvas id="history-chart" canvas-id="history-chart-canvas" ec="{{ ec }}"></ec-canvas>
+          </view>
+          <!-- 可以选择性地显示表格数据 -->
+          <!-- <view class="history-table">
+            ...
+          </view> -->
+        </view>
+        <view wx:else class="empty-text">暂无历史数据</view>
+      </view>
+
+      <!-- 设备控制 -->
+      <view wx:if="{{activeTab === 'control'}}" class="tab-panel control-panel">
+        <view class="control-form">
+           <view class="form-item">
+             <label class="form-label">命令名称:</label>
+             <input class="form-input" placeholder="请输入命令名称 (如: setPower)" data-field="commandName" bindinput="onCommandInput" value="{{commandName}}"/>
+           </view>
+           <view class="form-item">
+             <label class="form-label">命令参数 (JSON):</label>
+             <textarea class="form-textarea" placeholder='请输入 JSON 格式参数 (如: {\"value\": true})' data-field="commandParams" bindinput="onCommandInput" value="{{commandParams}}"></textarea>
+           </view>
+           <button class="send-btn" type="primary" bindtap="sendCommand">发送命令</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 
